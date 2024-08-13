@@ -12,14 +12,19 @@ class Book {
 
 List<Book> favoriteBooks = [
   Book(
-    bookName: 'person 1',
-    authorName: 'Author One',
+    bookName: 'Quaid-i-Azam',
+    authorName: 'Founder of Pakistan',
     image: 'assets/image1.png',
   ),
   Book(
-    bookName: 'person 2',
-    authorName: 'Author Two',
+    bookName: 'Allama Iqbal',
+    authorName: 'Poet of the East',
     image: 'assets/image2.jpeg',
+  ),
+  Book(
+    bookName: 'Sir Syed Ahmed Khan',
+    authorName: 'Indian Muslim Reformer',
+    image: 'assets/image3.jpeg',
   ),
   // Add more books here
 ];

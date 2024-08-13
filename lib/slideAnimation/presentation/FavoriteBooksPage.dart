@@ -71,7 +71,7 @@ class _FavoriteBooksPageState extends State<FavoriteBooksPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
-          'Favorite Books ❤',
+          'Slide Animation ❤',
           style: GoogleFonts.merriweather(
             textStyle: TextStyle(
               fontWeight: FontWeight.bold,
@@ -152,7 +152,7 @@ class _FavoriteBooksPageState extends State<FavoriteBooksPage> {
                         ),
                         SizedBox(height: 8),
                         Text(
-                          "By ${book.authorName}",
+                          " ${book.authorName}",
                           style: GoogleFonts.merriweather(
                               fontSize: 15, color: Colors.redAccent),
                         ),
