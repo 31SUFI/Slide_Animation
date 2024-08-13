@@ -60,7 +60,7 @@ class _FavoriteBooksPageState extends State<FavoriteBooksPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final bookHeight = size.height * 0.45;
+    final bookHeight = size.height * 0.50;
     final bookWidth = size.width * 0.6;
 
     // Calculate vertical position for arrows
