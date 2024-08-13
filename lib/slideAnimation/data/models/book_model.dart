@@ -1,30 +1,30 @@
-class Book {
-  final String bookName;
+class Item {
+  final String itemName;
   final String authorName;
   final String image;
 
-  Book({
-    required this.bookName,
+  Item({
+    required this.itemName,
     required this.authorName,
     required this.image,
   });
 }
 
-List<Book> favoriteBooks = [
-  Book(
-    bookName: 'Quaid-i-Azam',
+List<Item> ListItems = [
+  Item(
+    itemName: 'Quaid-i-Azam',
     authorName: 'Founder of Pakistan',
     image: 'assets/image1.png',
   ),
-  Book(
-    bookName: 'Allama Iqbal',
+  Item(
+    itemName: 'Allama Iqbal',
     authorName: 'Poet of the East',
     image: 'assets/image2.jpeg',
   ),
-  Book(
-    bookName: 'Sir Syed Ahmed Khan',
+  Item(
+    itemName: 'Sir Syed Ahmed Khan',
     authorName: 'Indian Muslim Reformer',
     image: 'assets/image3.jpeg',
   ),
-  // Add more books here
+  // Add more items here
 ];

@@ -1,4 +1,4 @@
-import 'package:animated_slide/slideAnimation/presentation/FavoriteBooksPage.dart';
+import 'package:animated_slide/slideAnimation/presentation/slideAnimation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: FavoriteBooksPage(),
+      home: SlideAnimation(),
     );
   }
 }

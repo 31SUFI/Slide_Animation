@@ -1,20 +1,19 @@
 import 'package:animated_slide/slideAnimation/data/models/book_model.dart';
-import 'package:animated_slide/slideAnimation/services/book_removal.dart';
-import 'package:animated_slide/slideAnimation/utils/page_navigation_arrows.dart';
-import 'package:animated_slide/slideAnimation/utils/scroll_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// Import the arrow functionality
+import 'package:animated_slide/slideAnimation/services/item_removal.dart';
+import 'package:animated_slide/slideAnimation/utils/page_navigation_arrows.dart';
+import 'package:animated_slide/slideAnimation/utils/scroll_notifier.dart';
 
-class FavoriteBooksPage extends StatefulWidget {
+class SlideAnimation extends StatefulWidget {
   @override
-  _FavoriteBooksPageState createState() => _FavoriteBooksPageState();
+  _SlideAnimationState createState() => _SlideAnimationState();
 }
 
-class _FavoriteBooksPageState extends State<FavoriteBooksPage> {
+class _SlideAnimationState extends State<SlideAnimation> {
   late final ScrollNotifier _scrollNotifier;
-  late final BookRemoval _bookRemoval;
+  late final ItemRemoval _itemRemoval;
   final PageController _pageController = PageController();
   final ValueNotifier<double> _notifierScroll = ValueNotifier(0.0);
 
@@ -22,7 +21,7 @@ class _FavoriteBooksPageState extends State<FavoriteBooksPage> {
   void initState() {
     super.initState();
     _scrollNotifier = ScrollNotifier(_pageController, _notifierScroll);
-    _bookRemoval = BookRemoval(_removeBook);
+    _itemRemoval = ItemRemoval(_removeItem);
     _scrollNotifier.addListener();
   }
 
@@ -33,9 +32,9 @@ class _FavoriteBooksPageState extends State<FavoriteBooksPage> {
     super.dispose();
   }
 
-  void _removeBook(int index) {
+  void _removeItem(int index) {
     setState(() {
-      favoriteBooks.removeAt(index);
+      ListItems.removeAt(index);
     });
   }
 
@@ -49,7 +48,7 @@ class _FavoriteBooksPageState extends State<FavoriteBooksPage> {
   }
 
   void _nextPage() {
-    if (_pageController.page! < favoriteBooks.length - 1) {
+    if (_pageController.page! < ListItems.length - 1) {
       _pageController.nextPage(
         duration: Duration(milliseconds: 400),
         curve: Curves.easeInOut,
@@ -60,12 +59,12 @@ class _FavoriteBooksPageState extends State<FavoriteBooksPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final bookHeight = size.height * 0.50;
-    final bookWidth = size.width * 0.6;
+    final itemHeight = size.height * 0.45;
+    final itemWidth = size.width * 0.6;
 
     // Calculate vertical position for arrows
     final verticalPosition =
-        (size.height - bookHeight) / 2 + bookHeight / 2 - 25;
+        (size.height - itemHeight) / 2 + itemHeight / 2 - 25;
 
     return Scaffold(
       appBar: AppBar(
@@ -91,9 +90,9 @@ class _FavoriteBooksPageState extends State<FavoriteBooksPage> {
           ),
           PageView.builder(
             controller: _pageController,
-            itemCount: favoriteBooks.length,
+            itemCount: ListItems.length,
             itemBuilder: (context, index) {
-              final book = favoriteBooks[index];
+              final item = ListItems[index];
 
               return Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -105,8 +104,8 @@ class _FavoriteBooksPageState extends State<FavoriteBooksPage> {
                       child: Stack(
                         children: [
                           Container(
-                            height: bookHeight,
-                            width: bookWidth,
+                            height: itemHeight,
+                            width: itemWidth,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
                               color: Colors.white,
@@ -122,15 +121,15 @@ class _FavoriteBooksPageState extends State<FavoriteBooksPage> {
                           ),
                           GestureDetector(
                             onLongPress: () {
-                              _bookRemoval.showRemoveDialog(context, index);
+                              _itemRemoval.showRemoveDialog(context, index);
                             },
                             child: Container(
-                              height: bookHeight,
-                              width: bookWidth,
+                              height: itemHeight,
+                              width: itemWidth,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
                                 image: DecorationImage(
-                                  image: AssetImage(book.image),
+                                  image: AssetImage(item.image),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -144,7 +143,7 @@ class _FavoriteBooksPageState extends State<FavoriteBooksPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          book.bookName,
+                          item.itemName,
                           style: GoogleFonts.merriweather(
                               fontSize: 25,
                               textStyle:
@@ -152,7 +151,7 @@ class _FavoriteBooksPageState extends State<FavoriteBooksPage> {
                         ),
                         SizedBox(height: 8),
                         Text(
-                          " ${book.authorName}",
+                          "${item.authorName}",
                           style: GoogleFonts.merriweather(
                               fontSize: 15, color: Colors.redAccent),
                         ),

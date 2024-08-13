@@ -1,20 +1,18 @@
-// slide_animation/services/book_removal.dart
 import 'package:flutter/material.dart';
-//import 'package:slide_animation/slideAnimation/data/models/book_model.dart';
 
-class BookRemoval {
-  final Function(int index) removeBook;
+class ItemRemoval {
+  final Function(int index) removeItem;
 
-  BookRemoval(this.removeBook);
+  ItemRemoval(this.removeItem);
 
   void showRemoveDialog(BuildContext context, int index) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Remove Book'),
+          title: Text('Remove Item'),
           content: Text(
-              'Are you sure you want to remove this book from your favorites?'),
+              'Are you sure you want to remove this item from your favorites?'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -24,7 +22,7 @@ class BookRemoval {
             ),
             TextButton(
               onPressed: () {
-                removeBook(index);
+                removeItem(index);
                 Navigator.of(context).pop();
               },
               child: Text('Yes'),
