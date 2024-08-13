@@ -20,7 +20,7 @@ class PageNavigationArrows extends StatelessWidget {
           left: 0,
           top: verticalPosition,
           child: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+            icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
             onPressed: onPreviousPage,
           ),
         ),
@@ -28,7 +28,7 @@ class PageNavigationArrows extends StatelessWidget {
           right: 0,
           top: verticalPosition,
           child: IconButton(
-            icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
+            icon: const Icon(Icons.arrow_forward_ios, color: Colors.black),
             onPressed: onNextPage,
           ),
         ),
